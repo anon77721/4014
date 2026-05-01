@@ -1,0 +1,25 @@
+# Training config for meta-llama/Meta-Llama-3-8B-Instruct
+
+model_id:     "meta-llama/Meta-Llama-3-8B-Instruct"
+dataset_path: "datasets/prepared/llama3"  # output of: python 2_prepare_dataset.py --model_type Llama-3
+
+output_dir:   "./checkpoints/llama3-8b"
+report_to:    "wandb"
+
+learning_rate:               2e-4
+lr_scheduler_type:           "constant"
+num_train_epochs:            2
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 4
+optim:                       adamw_torch
+warmup_ratio:                0.03
+max_grad_norm:               0.3
+
+max_seq_length:          3072
+gradient_checkpointing:  true
+
+bf16:  true
+tf32:  false
+
+logging_steps:  10
+save_strategy:  "epoch"
